@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Delay Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <header>
+        <!-- <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Luku Logo" class="luku-logo"> -->
+        <h1>Vendor Payment Predictor</h1>
+        <!-- <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Top Logo" class="top-logo"> -->
+    </header>
+    
+    <main class="container">
+        <section class="form-section">
+            <h2>Predict Payment Delays</h2>
+            <form method="POST" id="predictForm">
+                <div class="form-group">
+                    <label for="vendor_id">Vendor ID:</label>
+                    <input type="text" name="vendor_id" id="vendor_id" 
+                           value="{{ vendor_id if vendor_id else 'V007' }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="payment_amount">Payment Amount ($):</label>
+                    <input type="number" name="payment_amount" id="payment_amount" 
+                           value="{{ payment_amount if payment_amount is not none else 50000 }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vendor_category">Vendor Category:</label>
+                    <select name="vendor_category" id="vendor_category">
+                        <option value="Logistics" {% if vendor_category == "Logistics" %}selected{% endif %}>Logistics</option>
+                        <option value="Raw Materials" {% if vendor_category == "Raw Materials" %}selected{% endif %}>Raw Materials</option>
+                        <option value="Services" {% if vendor_category == "Services" %}selected{% endif %}>Services</option>
+                        <option value="Technology" {% if vendor_category == "Technology" %}selected{% endif %}>Technology</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vendor_location">Vendor Location:</label>
+                    <select name="vendor_location" id="vendor_location">
+                        <option value="US" {% if vendor_location == "US" %}selected{% endif %}>US</option>
+                        <option value="EU" {% if vendor_location == "EU" %}selected{% endif %}>EU</option>
+                        <option value="Asia" {% if vendor_location == "Asia" %}selected{% endif %}>Asia</option>
+                        <option value="Africa" {% if vendor_category == "Africa" %}selected{% endif %}>Africa</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hist_payment_behavior">Historical Avg Delay (days):</label>
+                    <input type="number" step="0.1" name="hist_payment_behavior" id="hist_payment_behavior" 
+                           value="{{ hist_payment_behavior if hist_payment_behavior is not none else 12 }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="invoice_date">Invoice Date:</label>
+                    <input type="date" name="invoice_date" id="invoice_date" 
+                           value="{{ invoice_date if invoice_date else '2025-04-30' }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="due_date">Due Date:</label>
+                    <input type="date" name="due_date" id="due_date" 
+                           value="{{ due_date if due_date else '2025-05-09' }}" required>
+                </div>
+                
+                <button type="submit" class="btn">Predict</button>
+            </form>
+        </section>
+
+        {% if prediction %}
+        <section class="result-section">
+            <h2>{{ prediction }}</h2>
+            <p><strong>Anomaly:</strong> {{ anomaly }}</p>
+        </section>
+
+        <section class="summary">
+            <h3>Input Summary</h3>
+            <ul>
+                <li><strong>Vendor ID:</strong> {{ vendor_id }}</li>
+                <li><strong>Payment Amount:</strong> ${{ payment_amount | float | format_currency }}</li>
+                <li><strong>Vendor Category:</strong> {{ vendor_category }}</li>
+                <li><strong>Vendor Location:</strong> {{ vendor_location }}</li>
+                <li><strong>Historical Avg Delay:</strong> {{ hist_payment_behavior }} days</li>
+                <li><strong>Invoice Date:</strong> {{ invoice_date }}</li>
+                <li><strong>Due Date:</strong> {{ due_date }}</li>
+                <li><strong>Payment Terms:</strong> {{ (due_dt - invoice_dt).days if due_dt and invoice_dt else '' }} days</li>
+            </ul>
+        </section>
+        {% endif %}
+
+        <section class="visualization-section">
+            <h3>Model Visualizations</h3>
+            <div class="charts">
+                <img src="{{ url_for('static', filename='delay_prediction_vs_actual.png') }}" alt="Delay Prediction vs Actual" class="chart-img">
+                <img src="{{ url_for('static', filename='anomaly_detection_scatter.png') }}" alt="Anomaly Detection" class="chart-img">
+                <img src="{{ url_for('static', filename='feature_importance_bar.png') }}" alt="Feature Importance" class="chart-img">
+                <img src="{{ url_for('static', filename='train_test_split_performance.png') }}" alt="Train-Test Performance" class="chart-img">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Payment Delay Predictor.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
