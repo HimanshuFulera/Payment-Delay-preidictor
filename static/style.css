@@ -1,0 +1,307 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    color: #2c3e50;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #2c3e50, #34495e);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.top-logo {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.luku-logo {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Main Container */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex: 1;
+}
+
+/* Form Section */
+.form-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-section h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e4e8;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* Result Section */
+.result-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.6s ease-in;
+}
+
+.result-section h2 {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.result-section p {
+    font-size: 1.1rem;
+    color: #34495e;
+}
+
+/* Summary Section */
+.summary {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.summary h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.summary ul {
+    list-style: none;
+    padding: 0;
+}
+
+.summary li {
+    font-size: 1rem;
+    color: #34495e;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.summary li::before {
+    content: "•";
+    color: #3498db;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+/* Visualization Section */
+.visualization-section {
+    background: white;
+    padding: 2.5rem; /* Increased padding for larger block */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    margin-top: 2rem; /* Added margin to separate from previous section */
+}
+
+.visualization-section h3 {
+    font-size: 1.8rem; /* Increased font size for emphasis */
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Maintain 2x2 format */
+    gap: 1.5rem; /* Increased gap for better spacing */
+    max-width: 1000px; /* Increased max-width for larger block */
+    margin: 0 auto; /* Center the grid */
+}
+
+.chart-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; /* Added transition for hover effect */
+}
+
+.chart-img:hover {
+    transform: scale(1.05); /* Slight zoom on hover for interactivity */
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        margin: 1rem;
+    }
+
+    .form-section,
+    .result-section,
+    .summary {
+        padding: 1.2rem;
+    }
+
+    .visualization-section {
+        padding: 2rem;
+    }
+
+    .form-section h2,
+    .visualization-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
+
+    .charts {
+        grid-template-columns: 1fr; /* Stack vertically on small screens */
+        max-width: 100%;
+        gap: 1rem;
+    }
+
+    .top-logo,
+    .luku-logo {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 0.9rem;
+    }
+
+    .result-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .summary h3 {
+        font-size: 1.2rem;
+    }
+
+    .visualization-section h3 {
+        font-size: 1.4rem;
+    }
+
+    .top-logo,
+    .luku-logo {
+        width: 30px;
+        height: 30px;
+    }
+}
